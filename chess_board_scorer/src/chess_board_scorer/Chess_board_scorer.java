@@ -44,7 +44,7 @@ public class Chess_board_scorer {
     static final String PATH_TO_RATED_BITBOARD_OUT = "/Users/jimbrill/NetBeansProjects/chess_board_scorer_data/chess_board_scorer_data/data/bitboards";
 ///Users/jimbrill/NetBeansProjects/cuda-convnet/chess_boardscorer/data/bitboards";//.bin";
     static int time_per_move = 10; //in milliseconds
-    static int start_on_file = 3;//3;
+    static int start_on_file = 4;//3;
     static int end_on_file = 1000;
     static int GAMES_PER_FILE = 1000;
 
