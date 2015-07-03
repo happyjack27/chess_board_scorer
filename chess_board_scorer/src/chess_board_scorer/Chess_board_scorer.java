@@ -38,12 +38,14 @@ function to dump to scored bitvector
 */
 public class Chess_board_scorer {
     static final String PATH_TO_STOCKFISH = "/Users/jimbrill/NetBeansProjects/Stockfish/src/stockfish";
-    static final String PATH_TO_DATA_CLEAN = "/Users/jimbrill/NetBeansProjects/cuda-convnet/chess_boardscorer/data/out2.pgn";
+    static final String PATH_TO_DATA_CLEAN = "/Users/jimbrill/NetBeansProjects/chess_board_scorer_data/chess_board_scorer_data/data/out2.pgn";
+///Users/jimbrill/NetBeansProjects/cuda-convnet/chess_boardscorer/data/out2.pgn";
     static final String PATH_TO_DATA_DIRTY = "/Users/jimbrill/NetBeansProjects/cuda-convnet/chess_boardscorer/data/out.pgn";
-    static final String PATH_TO_RATED_BITBOARD_OUT = "/Users/jimbrill/NetBeansProjects/cuda-convnet/chess_boardscorer/data/bitboards";//.bin";
+    static final String PATH_TO_RATED_BITBOARD_OUT = "/Users/jimbrill/NetBeansProjects/chess_board_scorer_data/chess_board_scorer_data/data/bitboards";
+///Users/jimbrill/NetBeansProjects/cuda-convnet/chess_boardscorer/data/bitboards";//.bin";
     static int time_per_move = 10; //in milliseconds
-    static int start_on_file = 0;//3;
-    static int end_on_file = 1;
+    static int start_on_file = 3;//3;
+    static int end_on_file = 1000;
     static int GAMES_PER_FILE = 1000;
 
     static Process processStockfish = null;
