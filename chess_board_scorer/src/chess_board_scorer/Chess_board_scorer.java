@@ -13,6 +13,13 @@ black pawns, black knights, black bishops, black rooks, black queens, black king
 it is always white to move. (when its black to move, the board is flipped,the colors swapped, and the score inverted)
 
 */
+/*
+// must first convert pgn files(S) to uci notation.
+// pgn-extract -Wuci -oout.pgn games.pgn
+// /Users/jimbrill/NetBeansProjects/cuda-convnet/pgn-extract/pgn-extract -Wuci -oout.pgn /Users/jimbrill/NetBeansProjects/cuda-convnet/chess_boardscorer/data/ficsgamesdb_201501_standard_nomovetimes_1264408.pgn
+
+
+*/
 
 package chess_board_scorer;
 
@@ -38,14 +45,17 @@ function to dump to scored bitvector
 */
 public class Chess_board_scorer {
     static final String PATH_TO_STOCKFISH = "/Users/jimbrill/NetBeansProjects/Stockfish/src/stockfish";
-    static final String PATH_TO_DATA_CLEAN = "/Users/jimbrill/NetBeansProjects/chess_board_scorer_data/chess_board_scorer_data/data/out2.pgn";
+    static final String PATH_TO_DATA_DIRTY = "/Users/jimbrill/Downloads/out.pgn";
+    static final String PATH_TO_DATA_CLEAN = "/Users/jimbrill/Downloads/out201502.pgn";
+
+    //static final String PATH_TO_DATA_DIRTY = "/Users/jimbrill/NetBeansProjects/cuda-convnet/chess_boardscorer/data/out.pgn";
+    //static final String PATH_TO_DATA_CLEAN = "/Users/jimbrill/NetBeansProjects/chess_board_scorer_data/chess_board_scorer_data/data/out2.pgn";
 ///Users/jimbrill/NetBeansProjects/cuda-convnet/chess_boardscorer/data/out2.pgn";
-    static final String PATH_TO_DATA_DIRTY = "/Users/jimbrill/NetBeansProjects/cuda-convnet/chess_boardscorer/data/out.pgn";
     static final String PATH_TO_RATED_BITBOARD_OUT = "/Users/jimbrill/NetBeansProjects/chess_board_scorer_data/chess_board_scorer_data/data/bitboards";
 ///Users/jimbrill/NetBeansProjects/cuda-convnet/chess_boardscorer/data/bitboards";//.bin";
-    static int time_per_move = 10; //in milliseconds
-    static int start_on_file = 4;//3;
-    static int end_on_file = 1000;
+    static int time_per_move = 20; //in milliseconds
+    static int start_on_file = 25;//3;
+    static int end_on_file = 10000;
     static int GAMES_PER_FILE = 1000;
 
     static Process processStockfish = null;
@@ -76,8 +86,8 @@ public class Chess_board_scorer {
   
   
     public static void main(String[] args) {
-        createRatedBitBoards();
-        System.exit(0);
+        //createRatedBitBoards();
+        //System.exit(0);
         cleandata();
         System.exit(0);
     }
@@ -315,7 +325,7 @@ cp - centipawns - is the answer.
                     //boardout(board);
                     
                     if( i % 2 == 0) {
-                        score = -score;
+                        //score = -score; //no need to flip score because its already from perspective of engine.
                         swap_colors(board,flipped_board);
                         
                         mirror(flipped_board,mirrored_board);
