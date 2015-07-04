@@ -51,10 +51,10 @@ public class Chess_board_scorer {
     //static final String PATH_TO_DATA_DIRTY = "/Users/jimbrill/NetBeansProjects/cuda-convnet/chess_boardscorer/data/out.pgn";
     //static final String PATH_TO_DATA_CLEAN = "/Users/jimbrill/NetBeansProjects/chess_board_scorer_data/chess_board_scorer_data/data/out2.pgn";
 ///Users/jimbrill/NetBeansProjects/cuda-convnet/chess_boardscorer/data/out2.pgn";
-    static final String PATH_TO_RATED_BITBOARD_OUT = "/Users/jimbrill/NetBeansProjects/chess_board_scorer_data/chess_board_scorer_data/data/bitboards";
+    static final String PATH_TO_RATED_BITBOARD_OUT = "/Users/jimbrill/NetBeansProjects/chess_board_scorer_data/chess_board_scorer_data/data/201502_all/bitboards";
 ///Users/jimbrill/NetBeansProjects/cuda-convnet/chess_boardscorer/data/bitboards";//.bin";
-    static int time_per_move = 20; //in milliseconds
-    static int start_on_file = 25;//3;
+    static int time_per_move = 25; //in milliseconds
+    static int start_on_file = 0;//3;
     static int end_on_file = 10000;
     static int GAMES_PER_FILE = 1000;
 
@@ -86,8 +86,8 @@ public class Chess_board_scorer {
   
   
     public static void main(String[] args) {
-        //createRatedBitBoards();
-        //System.exit(0);
+        createRatedBitBoards();
+        System.exit(0);
         cleandata();
         System.exit(0);
     }
