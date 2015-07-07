@@ -44,9 +44,10 @@ function to dump to scored bitvector
 //bit board 0 didn't process en passant!
 */
 public class Chess_board_scorer {
+    static boolean score_out_only = true;
     static final String PATH_TO_STOCKFISH = "/Users/jimbrill/NetBeansProjects/Stockfish/src/stockfish";
     static final String PATH_TO_DATA_DIRTY = "/Users/jimbrill/Downloads/out.pgn";
-    static final String PATH_TO_DATA_CLEAN = "/Users/jimbrill/Downloads/out201502.pgn";
+    static final String PATH_TO_DATA_CLEAN = "/Users/jimbrill/Downloads/out201502_all.pgn";
 
     //static final String PATH_TO_DATA_DIRTY = "/Users/jimbrill/NetBeansProjects/cuda-convnet/chess_boardscorer/data/out.pgn";
     //static final String PATH_TO_DATA_CLEAN = "/Users/jimbrill/NetBeansProjects/chess_board_scorer_data/chess_board_scorer_data/data/out2.pgn";
@@ -54,7 +55,7 @@ public class Chess_board_scorer {
     static final String PATH_TO_RATED_BITBOARD_OUT = "/Users/jimbrill/NetBeansProjects/chess_board_scorer_data/chess_board_scorer_data/data/201502_all/bitboards";
 ///Users/jimbrill/NetBeansProjects/cuda-convnet/chess_boardscorer/data/bitboards";//.bin";
     static int time_per_move = 25; //in milliseconds
-    static int start_on_file = 0;//3;
+    static int start_on_file = 43;//3;
     static int end_on_file = 10000;
     static int GAMES_PER_FILE = 1000;
 
@@ -317,12 +318,21 @@ cp - centipawns - is the answer.
                 StringBuilder moves_partial = new StringBuilder(""+moves[0]);
                 startpos(board);
                 moves(board,moves[0]);
+                if( score_out_only) {
+                    int score = score(moves_partial.toString());
+                    fos.write((""+score).getBytes());
+                }
                 for( int i = 1; i < moves.length; i++) {
                     moves_partial.append(" ");
                     moves_partial.append(moves[i]);
                     moves(board,moves[i]);
                     int score = score(moves_partial.toString());
                     //boardout(board);
+                    if( score_out_only) {
+                        fos.write((" "+score).getBytes());
+          
+                    } else {
+
                     
                     if( i % 2 == 0) {
                         //score = -score; //no need to flip score because its already from perspective of engine.
@@ -359,6 +369,13 @@ cp - centipawns - is the answer.
                         
                     }
                 }
+                }
+                if( score_out_only) {
+                    fos.write('\n');
+                } else {
+                    
+                }
+
  
                 c++;
                 if( c % 10 == 0) {
