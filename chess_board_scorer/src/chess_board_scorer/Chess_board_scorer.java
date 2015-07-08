@@ -52,10 +52,10 @@ public class Chess_board_scorer {
     //static final String PATH_TO_DATA_DIRTY = "/Users/jimbrill/NetBeansProjects/cuda-convnet/chess_boardscorer/data/out.pgn";
     //static final String PATH_TO_DATA_CLEAN = "/Users/jimbrill/NetBeansProjects/chess_board_scorer_data/chess_board_scorer_data/data/out2.pgn";
 ///Users/jimbrill/NetBeansProjects/cuda-convnet/chess_boardscorer/data/out2.pgn";
-    static final String PATH_TO_RATED_BITBOARD_OUT = "/Users/jimbrill/NetBeansProjects/chess_board_scorer_data/chess_board_scorer_data/data/201502_all/bitboards";
+    static final String PATH_TO_RATED_BITBOARD_OUT = "/Users/jimbrill/NetBeansProjects/chess_board_scorer_data/chess_board_scorer_data/data/201502_all/scores";
 ///Users/jimbrill/NetBeansProjects/cuda-convnet/chess_boardscorer/data/bitboards";//.bin";
     static int time_per_move = 25; //in milliseconds
-    static int start_on_file = 43;//3;
+    static int start_on_file = 2;//3;
     static int end_on_file = 10000;
     static int GAMES_PER_FILE = 1000;
 
@@ -119,10 +119,10 @@ public class Chess_board_scorer {
         } else
         if( words[0].equals("mate")) {
             if( words[1].equals("-")) {
-                return Integer.parseInt(words[2]) > 0 ? -100*100 : 100*100;
+                return Integer.parseInt(words[2]) > 0 ? -1000*100 : 1000*100;
             } else {
                 try {
-                  return Integer.parseInt(words[1]) < 0 ? -100*100 : 100*100;
+                  return Integer.parseInt(words[1]) < 0 ? -1000*100 : 1000*100;
                 } catch (Exception ex) {
                   return 0;
                 }
@@ -301,7 +301,7 @@ cp - centipawns - is the answer.
                 }
             }
             
-            fos = new FileOutputStream(new File(PATH_TO_RATED_BITBOARD_OUT+out_file+".bin"));
+            fos = new FileOutputStream(new File(PATH_TO_RATED_BITBOARD_OUT+out_file+(score_out_only ? ".txt" : ".bin")));
             dos = new DataOutputStream(fos);
 
             while ((line = bufferedReader.readLine()) != null) {
